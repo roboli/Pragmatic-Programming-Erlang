@@ -29,14 +29,13 @@ catcher(N) ->
 		Val -> {N, normal, Val}
 	catch
 		throw:X -> 
-			log_file({N, caught, thrown, X}),
-			client_log();
+			log_file({N, caught, thrown, X});
 		exit:X -> 
-			log_file({N, caught, exited, X}),
-			client_log();
+			log_file({N, caught, exited, X});
 		error:X -> 
-			log_file({N, caught, error, X}),
-			client_log()
+			log_file({N, caught, error, X})
+	after
+               client_log()
 	end.
 
 client_log() ->
